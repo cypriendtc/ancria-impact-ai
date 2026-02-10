@@ -6,34 +6,34 @@ import heroBg from "@/assets/hero-bg.jpg";
 const Index = () => {
   return (
     <>
-      {/* Hero */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+      {/* Hero - dark section */}
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden hero-dark">
         <div className="absolute inset-0">
-          <img src={heroBg} alt="IA et technologie en Afrique" className="w-full h-full object-cover opacity-40" />
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/40" />
+          <img src={heroBg} alt="IA et technologie en Afrique" className="w-full h-full object-cover opacity-30" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[hsl(var(--hero-bg))] via-[hsl(var(--hero-bg)/0.85)] to-[hsl(var(--hero-bg)/0.5)]" />
         </div>
         <div className="container mx-auto relative z-10 px-4 md:px-8">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-primary text-sm font-medium mb-6 animate-fade-up">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6 animate-fade-up">
               <Zap size={14} />
               Intelligence Artificielle & Automatisation
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight mb-6 animate-fade-up" style={{ animationDelay: "0.1s" }}>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight mb-6 text-[hsl(var(--hero-fg))] animate-fade-up" style={{ animationDelay: "0.1s" }}>
               L'IA au service de la{" "}
               <span className="text-gradient">performance</span> des entreprises africaines
             </h1>
-            <p className="text-lg text-muted-foreground mb-8 leading-relaxed animate-fade-up" style={{ animationDelay: "0.2s" }}>
+            <p className="text-lg text-[hsl(var(--hero-fg)/0.75)] mb-8 leading-relaxed animate-fade-up" style={{ animationDelay: "0.2s" }}>
               ANCRIATECH accompagne les PME, institutions et startups dans l'adoption de l'intelligence artificielle pour transformer leurs processus et accélérer leur croissance.
             </p>
             <div className="flex flex-wrap gap-4 animate-fade-up" style={{ animationDelay: "0.3s" }}>
               <Link to="/contact">
-                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 glow-cyan">
+                <Button size="lg">
                   Prendre rendez-vous
                   <ArrowRight className="ml-2" size={18} />
                 </Button>
               </Link>
               <Link to="/services">
-                <Button size="lg" variant="outline" className="border-primary/30 text-foreground hover:bg-primary/10">
+                <Button size="lg" variant="outline" className="border-[hsl(var(--hero-fg)/0.3)] text-[hsl(var(--hero-fg))] hover:bg-[hsl(var(--hero-fg)/0.1)]">
                   Découvrir nos services
                 </Button>
               </Link>
@@ -55,33 +55,17 @@ const Index = () => {
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              {
-                icon: Brain,
-                title: "Conseil en IA",
-                desc: "Audit, stratégie et identification des cas d'usage IA adaptés à votre activité.",
-              },
-              {
-                icon: Cpu,
-                title: "Automatisation & Agents IA",
-                desc: "Automatisation des tâches répétitives, workflows n8n et agents IA métiers.",
-              },
-              {
-                icon: GraduationCap,
-                title: "Formation & Accompagnement",
-                desc: "Programmes de formation IA sur mesure pour vos équipes et dirigeants.",
-              },
+              { icon: Brain, title: "Conseil en IA", desc: "Audit, stratégie et identification des cas d'usage IA adaptés à votre activité." },
+              { icon: Cpu, title: "Automatisation & Agents IA", desc: "Automatisation des tâches répétitives, workflows n8n et agents IA métiers." },
+              { icon: GraduationCap, title: "Formation & Accompagnement", desc: "Programmes de formation IA sur mesure pour vos équipes et dirigeants." },
             ].map((s, i) => (
-              <div
-                key={s.title}
-                className="group glass rounded-xl p-8 hover:border-primary/40 transition-all duration-300 animate-fade-up"
-                style={{ animationDelay: `${i * 0.1}s` }}
-              >
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-5 group-hover:glow-cyan transition-all">
+              <div key={s.title} className="card-elevated p-8 group animate-fade-up" style={{ animationDelay: `${i * 0.1}s` }}>
+                <div className="w-12 h-12 rounded-lg bg-accent flex items-center justify-center mb-5 group-hover:bg-primary/10 transition-colors">
                   <s.icon size={24} className="text-primary" />
                 </div>
-                <h3 className="font-heading font-semibold text-lg mb-3 text-foreground">{s.title}</h3>
+                <h3 className="font-heading font-semibold text-lg mb-3">{s.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-4">{s.desc}</p>
-                <Link to="/services" className="inline-flex items-center text-sm text-primary hover:underline">
+                <Link to="/services" className="inline-flex items-center text-sm text-primary font-medium hover:underline">
                   En savoir plus <ArrowRight size={14} className="ml-1" />
                 </Link>
               </div>
@@ -91,7 +75,7 @@ const Index = () => {
       </section>
 
       {/* Stats */}
-      <section className="section-padding bg-card/50">
+      <section className="section-padding bg-muted/50">
         <div className="container mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
@@ -140,9 +124,9 @@ const Index = () => {
                 { icon: BarChart3, label: "ROI mesurable", desc: "Résultats concrets" },
                 { icon: MessageSquare, label: "Support dédié", desc: "Suivi continu" },
               ].map((item) => (
-                <div key={item.label} className="glass rounded-xl p-6 text-center hover:border-primary/40 transition-all">
+                <div key={item.label} className="card-elevated p-6 text-center">
                   <item.icon size={28} className="text-primary mx-auto mb-3" />
-                  <h4 className="font-heading font-semibold text-sm text-foreground">{item.label}</h4>
+                  <h4 className="font-heading font-semibold text-sm">{item.label}</h4>
                   <p className="text-xs text-muted-foreground mt-1">{item.desc}</p>
                 </div>
               ))}
@@ -154,22 +138,21 @@ const Index = () => {
       {/* CTA */}
       <section className="section-padding">
         <div className="container mx-auto">
-          <div className="glass rounded-2xl p-10 md:p-16 text-center glow-cyan">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
+          <div className="hero-dark rounded-2xl p-10 md:p-16 text-center">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4 text-[hsl(var(--hero-fg))]">
               Prêt à transformer votre entreprise avec l'<span className="text-gradient">IA</span> ?
             </h2>
-            <p className="text-muted-foreground mb-8 max-w-lg mx-auto">
+            <p className="text-[hsl(var(--hero-fg)/0.7)] mb-8 max-w-lg mx-auto">
               Discutons de vos enjeux et identifions ensemble les opportunités d'automatisation et d'IA pour votre activité.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link to="/contact">
-                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                  Demander un devis gratuit
-                  <ArrowRight className="ml-2" size={18} />
+                <Button size="lg">
+                  Demander un devis gratuit <ArrowRight className="ml-2" size={18} />
                 </Button>
               </Link>
               <Link to="/contact">
-                <Button size="lg" variant="outline" className="border-primary/30 text-foreground hover:bg-primary/10">
+                <Button size="lg" variant="outline" className="border-[hsl(var(--hero-fg)/0.3)] text-[hsl(var(--hero-fg))] hover:bg-[hsl(var(--hero-fg)/0.1)]">
                   Nous contacter
                 </Button>
               </Link>

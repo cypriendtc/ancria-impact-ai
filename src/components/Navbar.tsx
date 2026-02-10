@@ -17,13 +17,12 @@ const Navbar = () => {
   const location = useLocation();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 glass">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-card/80 backdrop-blur-xl border-b border-border">
       <div className="container mx-auto flex items-center justify-between h-16 md:h-20">
         <Link to="/" className="text-xl md:text-2xl font-heading font-bold text-gradient">
           ANCRIATECH
         </Link>
 
-        {/* Desktop */}
         <div className="hidden lg:flex items-center gap-8">
           {navItems.map((item) => (
             <Link
@@ -37,21 +36,17 @@ const Navbar = () => {
             </Link>
           ))}
           <Link to="/contact">
-            <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90 glow-cyan">
-              Prendre RDV
-            </Button>
+            <Button size="sm">Prendre RDV</Button>
           </Link>
         </div>
 
-        {/* Mobile toggle */}
         <button className="lg:hidden text-foreground" onClick={() => setOpen(!open)}>
           {open ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile menu */}
       {open && (
-        <div className="lg:hidden glass border-t border-border animate-fade-in">
+        <div className="lg:hidden bg-card border-t border-border animate-fade-in">
           <div className="container mx-auto py-4 flex flex-col gap-4">
             {navItems.map((item) => (
               <Link
@@ -66,9 +61,7 @@ const Navbar = () => {
               </Link>
             ))}
             <Link to="/contact" onClick={() => setOpen(false)}>
-              <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
-                Prendre RDV
-              </Button>
+              <Button className="w-full">Prendre RDV</Button>
             </Link>
           </div>
         </div>
