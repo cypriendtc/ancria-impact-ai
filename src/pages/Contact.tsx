@@ -42,109 +42,68 @@ const Contact = () => {
       <section className="section-padding pt-0">
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-5 gap-10">
-            {/* Form */}
             <div className="lg:col-span-3">
-              <form onSubmit={handleSubmit} className="glass rounded-xl p-8 space-y-5">
-                <h2 className="text-xl font-heading font-semibold text-foreground mb-2">Envoyez-nous un message</h2>
+              <form onSubmit={handleSubmit} className="card-elevated p-8 space-y-5">
+                <h2 className="text-xl font-heading font-semibold mb-2">Envoyez-nous un message</h2>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
                     <label className="text-sm text-muted-foreground mb-1.5 block">Nom complet *</label>
-                    <Input
-                      value={form.name}
-                      onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      placeholder="Votre nom"
-                      className="bg-muted border-border"
-                      maxLength={100}
-                    />
+                    <Input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Votre nom" maxLength={100} />
                   </div>
                   <div>
                     <label className="text-sm text-muted-foreground mb-1.5 block">Email *</label>
-                    <Input
-                      type="email"
-                      value={form.email}
-                      onChange={(e) => setForm({ ...form, email: e.target.value })}
-                      placeholder="votre@email.com"
-                      className="bg-muted border-border"
-                      maxLength={255}
-                    />
+                    <Input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="votre@email.com" maxLength={255} />
                   </div>
                 </div>
                 <div>
                   <label className="text-sm text-muted-foreground mb-1.5 block">Entreprise</label>
-                  <Input
-                    value={form.company}
-                    onChange={(e) => setForm({ ...form, company: e.target.value })}
-                    placeholder="Nom de votre entreprise"
-                    className="bg-muted border-border"
-                    maxLength={100}
-                  />
+                  <Input value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} placeholder="Nom de votre entreprise" maxLength={100} />
                 </div>
                 <div>
                   <label className="text-sm text-muted-foreground mb-1.5 block">Message *</label>
-                  <Textarea
-                    value={form.message}
-                    onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    placeholder="Décrivez votre projet ou vos besoins..."
-                    className="bg-muted border-border min-h-[140px]"
-                    maxLength={1000}
-                  />
+                  <Textarea value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Décrivez votre projet ou vos besoins..." className="min-h-[140px]" maxLength={1000} />
                 </div>
-                <Button type="submit" disabled={sending} className="w-full bg-primary text-primary-foreground hover:bg-primary/90 glow-cyan">
+                <Button type="submit" disabled={sending} className="w-full">
                   {sending ? "Envoi en cours..." : "Envoyer le message"}
                   <Send size={16} className="ml-2" />
                 </Button>
               </form>
             </div>
 
-            {/* Info */}
             <div className="lg:col-span-2 space-y-6">
-              <div className="glass rounded-xl p-8">
-                <h3 className="font-heading font-semibold text-foreground mb-5">Coordonnées</h3>
+              <div className="card-elevated p-8">
+                <h3 className="font-heading font-semibold mb-5">Coordonnées</h3>
                 <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                      <Mail size={18} className="text-primary" />
+                  {[
+                    { icon: Mail, label: "Email", value: "contact@ancriatech.com" },
+                    { icon: Phone, label: "Téléphone", value: "+221 XX XXX XX XX" },
+                    { icon: MapPin, label: "Adresse", value: "Dakar, Sénégal" },
+                  ].map((c) => (
+                    <div key={c.label} className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center">
+                        <c.icon size={18} className="text-primary" />
+                      </div>
+                      <div>
+                        <div className="text-xs text-muted-foreground">{c.label}</div>
+                        <div className="text-sm">{c.value}</div>
+                      </div>
                     </div>
-                    <div>
-                      <div className="text-xs text-muted-foreground">Email</div>
-                      <div className="text-sm text-foreground">contact@ancriatech.com</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                      <Phone size={18} className="text-primary" />
-                    </div>
-                    <div>
-                      <div className="text-xs text-muted-foreground">Téléphone</div>
-                      <div className="text-sm text-foreground">+221 XX XXX XX XX</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                      <MapPin size={18} className="text-primary" />
-                    </div>
-                    <div>
-                      <div className="text-xs text-muted-foreground">Adresse</div>
-                      <div className="text-sm text-foreground">Dakar, Sénégal</div>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
 
               <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="block">
-                <div className="glass rounded-xl p-6 hover:border-primary/40 transition-all cursor-pointer text-center">
+                <div className="card-elevated p-6 text-center cursor-pointer">
                   <MessageCircle size={32} className="text-primary mx-auto mb-3" />
-                  <h3 className="font-heading font-semibold text-foreground mb-1">WhatsApp</h3>
+                  <h3 className="font-heading font-semibold mb-1">WhatsApp</h3>
                   <p className="text-sm text-muted-foreground">Discutez avec nous directement</p>
                 </div>
               </a>
 
-              <div className="glass rounded-xl p-6 text-center">
-                <h3 className="font-heading font-semibold text-foreground mb-2">Prendre rendez-vous</h3>
+              <div className="card-elevated p-6 text-center">
+                <h3 className="font-heading font-semibold mb-2">Prendre rendez-vous</h3>
                 <p className="text-sm text-muted-foreground mb-4">Réservez un créneau pour un appel découverte gratuit.</p>
-                <Button variant="outline" className="border-primary/30 text-foreground hover:bg-primary/10 w-full">
-                  Planifier un appel
-                </Button>
+                <Button variant="outline" className="w-full">Planifier un appel</Button>
               </div>
             </div>
           </div>

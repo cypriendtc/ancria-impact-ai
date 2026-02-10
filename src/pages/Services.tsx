@@ -8,15 +8,13 @@ const services = [
     icon: Brain,
     items: [
       {
-        icon: Search,
-        title: "Audit IA",
+        icon: Search, title: "Audit IA",
         problem: "Vous ne savez pas par où commencer avec l'IA.",
         solution: "Nous analysons vos processus et identifions les opportunités d'optimisation par l'IA.",
         benefits: ["Cartographie des opportunités IA", "Priorisation par impact business", "Feuille de route actionnable"],
       },
       {
-        icon: LineChart,
-        title: "Stratégie IA",
+        icon: LineChart, title: "Stratégie IA",
         problem: "Vous souhaitez intégrer l'IA mais manquez de vision stratégique.",
         solution: "Nous concevons votre stratégie IA alignée sur vos objectifs de croissance.",
         benefits: ["Plan stratégique IA sur 12-24 mois", "Identification des KPIs", "Budget et ROI prévisionnel"],
@@ -28,15 +26,13 @@ const services = [
     icon: Cpu,
     items: [
       {
-        icon: Workflow,
-        title: "Workflows & Automatisation",
+        icon: Workflow, title: "Workflows & Automatisation",
         problem: "Vos équipes perdent du temps sur des tâches répétitives.",
         solution: "Nous automatisons vos processus avec n8n, Make et des solutions sur mesure.",
         benefits: ["Réduction de 70% du temps sur les tâches répétitives", "Zéro erreur humaine", "Scalabilité immédiate"],
       },
       {
-        icon: Bot,
-        title: "Agents IA Métiers",
+        icon: Bot, title: "Agents IA Métiers",
         problem: "Vous cherchez à augmenter la capacité de vos équipes.",
         solution: "Nous développons des agents IA spécialisés pour vos besoins métiers.",
         benefits: ["Assistant IA disponible 24/7", "Réponses instantanées et contextualisées", "Intégration à vos outils existants"],
@@ -48,15 +44,13 @@ const services = [
     icon: GraduationCap,
     items: [
       {
-        icon: Users,
-        title: "Formation IA pour Entreprises",
+        icon: Users, title: "Formation IA pour Entreprises",
         problem: "Vos équipes ne maîtrisent pas les outils IA.",
         solution: "Nous formons vos collaborateurs aux usages concrets de l'IA dans leur métier.",
         benefits: ["Programmes adaptés à votre secteur", "Ateliers pratiques et cas concrets", "Certification de compétences"],
       },
       {
-        icon: BookOpen,
-        title: "Coaching Dirigeants",
+        icon: BookOpen, title: "Coaching Dirigeants",
         problem: "Vous souhaitez comprendre l'IA pour prendre les bonnes décisions.",
         solution: "Un accompagnement personnalisé pour intégrer l'IA dans votre vision stratégique.",
         benefits: ["Sessions individuelles", "Veille technologique dédiée", "Réseau de décideurs IA"],
@@ -79,21 +73,21 @@ const Services = () => {
         </div>
       </section>
 
-      {services.map((cat) => (
-        <section key={cat.category} className="section-padding even:bg-card/50">
+      {services.map((cat, ci) => (
+        <section key={cat.category} className={`section-padding ${ci % 2 === 1 ? "bg-muted/50" : ""}`}>
           <div className="container mx-auto">
             <div className="flex items-center gap-3 mb-10">
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center">
                 <cat.icon size={22} className="text-primary" />
               </div>
-              <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground">{cat.category}</h2>
+              <h2 className="text-2xl md:text-3xl font-heading font-bold">{cat.category}</h2>
             </div>
             <div className="grid md:grid-cols-2 gap-6">
               {cat.items.map((item) => (
-                <div key={item.title} className="glass rounded-xl p-8 hover:border-primary/40 transition-all">
+                <div key={item.title} className="card-elevated p-8">
                   <div className="flex items-center gap-3 mb-5">
                     <item.icon size={22} className="text-primary" />
-                    <h3 className="font-heading font-semibold text-xl text-foreground">{item.title}</h3>
+                    <h3 className="font-heading font-semibold text-xl">{item.title}</h3>
                   </div>
                   <div className="space-y-4 mb-6">
                     <div>
@@ -109,15 +103,14 @@ const Services = () => {
                       <ul className="mt-2 space-y-1">
                         {item.benefits.map((b) => (
                           <li key={b} className="text-sm text-muted-foreground flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                            {b}
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" /> {b}
                           </li>
                         ))}
                       </ul>
                     </div>
                   </div>
                   <Link to="/contact">
-                    <Button variant="outline" size="sm" className="border-primary/30 text-foreground hover:bg-primary/10">
+                    <Button variant="outline" size="sm">
                       Demander un devis <ArrowRight size={14} className="ml-1" />
                     </Button>
                   </Link>

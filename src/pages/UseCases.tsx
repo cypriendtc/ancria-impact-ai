@@ -4,32 +4,27 @@ import { ArrowRight, FileText, BarChart3, Megaphone, BookOpen, HeadphonesIcon } 
 
 const useCases = [
   {
-    icon: FileText,
-    title: "Automatisation de publication de contenu",
+    icon: FileText, title: "Automatisation de publication de contenu",
     desc: "Automatisez la création, la planification et la publication de vos contenus sur les réseaux sociaux et votre blog grâce à des workflows IA.",
     results: ["Gain de 80% de temps sur la gestion de contenu", "Publication cohérente et régulière", "Contenu optimisé par l'IA"],
   },
   {
-    icon: BarChart3,
-    title: "IA pour la productivité interne",
+    icon: BarChart3, title: "IA pour la productivité interne",
     desc: "Optimisez les processus internes : reporting automatisé, gestion documentaire intelligente, extraction de données et synthèses automatiques.",
     results: ["Réduction de 60% des tâches administratives", "Rapports générés en quelques secondes", "Meilleure prise de décision"],
   },
   {
-    icon: Megaphone,
-    title: "IA pour le marketing digital",
+    icon: Megaphone, title: "IA pour le marketing digital",
     desc: "Personnalisez vos campagnes marketing, analysez les performances et générez du contenu ciblé grâce à l'intelligence artificielle.",
     results: ["Segmentation client automatisée", "ROI marketing multiplié par 3", "Campagnes personnalisées à grande échelle"],
   },
   {
-    icon: BookOpen,
-    title: "IA pour la formation",
+    icon: BookOpen, title: "IA pour la formation",
     desc: "Créez des parcours de formation adaptatifs, générez des supports pédagogiques et suivez la progression des apprenants avec l'IA.",
     results: ["Parcours de formation personnalisés", "Création de contenu pédagogique automatisée", "Suivi de progression intelligent"],
   },
   {
-    icon: HeadphonesIcon,
-    title: "IA pour la relation client",
+    icon: HeadphonesIcon, title: "IA pour la relation client",
     desc: "Déployez des chatbots intelligents, automatisez le support client et analysez la satisfaction pour améliorer l'expérience client.",
     results: ["Support disponible 24/7", "Temps de réponse divisé par 10", "Satisfaction client en hausse de 40%"],
   },
@@ -52,14 +47,14 @@ const UseCases = () => {
       <section className="section-padding pt-0">
         <div className="container mx-auto space-y-6">
           {useCases.map((uc, i) => (
-            <div key={uc.title} className="glass rounded-xl p-8 md:p-10 hover:border-primary/40 transition-all animate-fade-up" style={{ animationDelay: `${i * 0.1}s` }}>
+            <div key={uc.title} className="card-elevated p-8 md:p-10 animate-fade-up" style={{ animationDelay: `${i * 0.1}s` }}>
               <div className="grid md:grid-cols-3 gap-8 items-start">
                 <div className="md:col-span-2">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center">
                       <uc.icon size={22} className="text-primary" />
                     </div>
-                    <h2 className="text-xl font-heading font-semibold text-foreground">{uc.title}</h2>
+                    <h2 className="text-xl font-heading font-semibold">{uc.title}</h2>
                   </div>
                   <p className="text-muted-foreground leading-relaxed">{uc.desc}</p>
                 </div>
@@ -68,8 +63,7 @@ const UseCases = () => {
                   <ul className="space-y-2">
                     {uc.results.map((r) => (
                       <li key={r} className="text-sm text-muted-foreground flex items-start gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
-                        {r}
+                        <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" /> {r}
                       </li>
                     ))}
                   </ul>
@@ -82,15 +76,15 @@ const UseCases = () => {
 
       <section className="section-padding pt-0">
         <div className="container mx-auto text-center">
-          <div className="glass rounded-2xl p-10 md:p-14 glow-cyan">
-            <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4">
+          <div className="hero-dark rounded-2xl p-10 md:p-14">
+            <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4 text-[hsl(var(--hero-fg))]">
               Vous avez un cas d'usage spécifique ?
             </h2>
-            <p className="text-muted-foreground mb-6">
+            <p className="text-[hsl(var(--hero-fg)/0.7)] mb-6">
               Parlons-en. Nous identifions ensemble les opportunités IA pour votre activité.
             </p>
             <Link to="/contact">
-              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+              <Button size="lg">
                 Discuter de mon projet <ArrowRight className="ml-2" size={18} />
               </Button>
             </Link>
