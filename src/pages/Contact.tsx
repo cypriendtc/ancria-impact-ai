@@ -24,7 +24,7 @@ const Contact = () => {
     }, 1000);
   };
 
-  const whatsappUrl = `https://wa.me/221XXXXXXXXX?text=${encodeURIComponent("Bonjour ANCRIATECH, je souhaite en savoir plus sur vos services.")}`;
+  const whatsappUrl = `https://wa.me/237698364432?text=${encodeURIComponent("Bonjour ANCRIATECH, je souhaite en savoir plus sur vos services.")}`;
 
   return (
     <>
@@ -76,8 +76,8 @@ const Contact = () => {
                 <div className="space-y-4">
                   {[
                     { icon: Mail, label: "Email", value: "contact@ancriatech.com" },
-                    { icon: Phone, label: "Téléphone", value: "+221 XX XXX XX XX" },
-                    { icon: MapPin, label: "Adresse", value: "Dakar, Sénégal" },
+                    { icon: Phone, label: "Téléphone", value: "+237 6 98 36 44 32" },
+                    { icon: MapPin, label: "Adresse", value: "Douala, Cameroun" },
                   ].map((c) => (
                     <div key={c.label} className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center">

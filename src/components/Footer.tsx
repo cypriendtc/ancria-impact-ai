@@ -46,10 +46,10 @@ const Footer = () => {
                 <Mail size={16} className="text-primary" /> contact@ancriatech.com
               </li>
               <li className="flex items-center gap-2 text-sm text-[hsl(var(--hero-fg)/0.6)]">
-                <Phone size={16} className="text-primary" /> +221 XX XXX XX XX
+                <Phone size={16} className="text-primary" /> +237 6 98 36 44 32
               </li>
               <li className="flex items-center gap-2 text-sm text-[hsl(var(--hero-fg)/0.6)]">
-                <MapPin size={16} className="text-primary" /> Dakar, Sénégal
+                <MapPin size={16} className="text-primary" /> Douala, Cameroun
               </li>
             </ul>
           </div>
