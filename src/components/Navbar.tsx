@@ -1,20 +1,22 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const navItems = [
-  { label: "Accueil", path: "/" },
-  { label: "À propos", path: "/a-propos" },
-  { label: "Services", path: "/services" },
-  { label: "Cas d'usage", path: "/cas-usage" },
-  { label: "Méthodologie", path: "/methodologie" },
-  { label: "Contact", path: "/contact" },
-];
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const { lang, setLang, t } = useLanguage();
+
+  const navItems = [
+    { label: t.nav.home[lang], path: "/" },
+    { label: t.nav.about[lang], path: "/a-propos" },
+    { label: t.nav.services[lang], path: "/services" },
+    { label: t.nav.useCases[lang], path: "/cas-usage" },
+    { label: t.nav.methodology[lang], path: "/methodologie" },
+    { label: t.nav.contact[lang], path: "/contact" },
+  ];
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-card/80 backdrop-blur-xl border-b border-border">
@@ -35,14 +37,30 @@ const Navbar = () => {
               {item.label}
             </Link>
           ))}
+          <button
+            onClick={() => setLang(lang === "fr" ? "en" : "fr")}
+            className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+          >
+            <Globe size={16} />
+            {lang === "fr" ? "EN" : "FR"}
+          </button>
           <Link to="/contact">
-            <Button size="sm">Prendre RDV</Button>
+            <Button size="sm">{t.nav.cta[lang]}</Button>
           </Link>
         </div>
 
-        <button className="lg:hidden text-foreground" onClick={() => setOpen(!open)}>
-          {open ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="flex items-center gap-3 lg:hidden">
+          <button
+            onClick={() => setLang(lang === "fr" ? "en" : "fr")}
+            className="flex items-center gap-1 text-sm font-medium text-muted-foreground"
+          >
+            <Globe size={16} />
+            {lang === "fr" ? "EN" : "FR"}
+          </button>
+          <button className="text-foreground" onClick={() => setOpen(!open)}>
+            {open ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {open && (
@@ -61,7 +79,7 @@ const Navbar = () => {
               </Link>
             ))}
             <Link to="/contact" onClick={() => setOpen(false)}>
-              <Button className="w-full">Prendre RDV</Button>
+              <Button className="w-full">{t.nav.cta[lang]}</Button>
             </Link>
           </div>
         </div>
