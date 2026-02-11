@@ -2,11 +2,29 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Brain, Cpu, GraduationCap, ArrowRight, Zap, Users, TrendingUp, Shield, CheckCircle, Lightbulb, Settings, BarChart3, MessageSquare } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
+
+const useCountUp = (end: number, duration = 2000, start = false) => {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    if (!start) return;
+    let startTime: number;
+    const step = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      setCount(Math.floor(progress * end));
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [start, end, duration]);
+  return count;
+};
 
 const Index = () => {
   const expertisesRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  const [statsVisible, setStatsVisible] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -21,6 +39,31 @@ const Index = () => {
     if (expertisesRef.current) observer.observe(expertisesRef.current);
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setStatsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    if (statsRef.current) observer.observe(statsRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const StatItem = ({ end, suffix, label, icon: Icon, started }: { end: number; suffix: string; label: string; icon: React.ElementType; started: boolean }) => {
+    const count = useCountUp(end, 1800, started);
+    return (
+      <div className="text-center">
+        <Icon size={28} className="text-primary mx-auto mb-3" />
+        <div className="text-3xl md:text-4xl font-heading font-bold text-gradient mb-1">{count}{suffix}</div>
+        <div className="text-sm text-muted-foreground">{label}</div>
+      </div>
+    );
+  };
 
   return (
     <>
@@ -103,19 +146,11 @@ const Index = () => {
       {/* Stats */}
       <section className="section-padding bg-muted/50">
         <div className="container mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { value: "50+", label: "Projets IA réalisés", icon: TrendingUp },
-              { value: "30+", label: "Entreprises accompagnées", icon: Users },
-              { value: "95%", label: "Taux de satisfaction", icon: Shield },
-              { value: "10x", label: "Gain de productivité moyen", icon: Zap },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center">
-                <stat.icon size={28} className="text-primary mx-auto mb-3" />
-                <div className="text-3xl md:text-4xl font-heading font-bold text-gradient mb-1">{stat.value}</div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </div>
-            ))}
+          <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <StatItem end={50} suffix="+" label="Projets IA réalisés" icon={TrendingUp} started={statsVisible} />
+            <StatItem end={30} suffix="+" label="Entreprises accompagnées" icon={Users} started={statsVisible} />
+            <StatItem end={95} suffix="%" label="Taux de satisfaction" icon={Shield} started={statsVisible} />
+            <StatItem end={10} suffix="x" label="Gain de productivité moyen" icon={Zap} started={statsVisible} />
           </div>
         </div>
       </section>
