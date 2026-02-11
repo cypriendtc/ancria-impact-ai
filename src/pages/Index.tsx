@@ -2,8 +2,26 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Brain, Cpu, GraduationCap, ArrowRight, Zap, Users, TrendingUp, Shield, CheckCircle, Lightbulb, Settings, BarChart3, MessageSquare } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
+import { useEffect, useRef, useState } from "react";
 
 const Index = () => {
+  const expertisesRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    if (expertisesRef.current) observer.observe(expertisesRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       {/* Hero - dark section */}
@@ -53,13 +71,21 @@ const Index = () => {
               Des solutions sur mesure pour intégrer l'IA dans votre entreprise
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div ref={expertisesRef} className="grid md:grid-cols-3 gap-6">
             {[
               { icon: Brain, title: "Conseil en IA", desc: "Audit, stratégie et identification des cas d'usage IA adaptés à votre activité." },
               { icon: Cpu, title: "Automatisation & Agents IA", desc: "Automatisation des tâches répétitives, workflows n8n et agents IA métiers." },
               { icon: GraduationCap, title: "Formation & Accompagnement", desc: "Programmes de formation IA sur mesure pour vos équipes et dirigeants." },
             ].map((s, i) => (
-              <div key={s.title} className="card-elevated p-8 group animate-fade-up" style={{ animationDelay: `${i * 0.1}s` }}>
+              <div
+                key={s.title}
+                className="card-elevated p-8 group transition-all duration-700 ease-out"
+                style={{
+                  opacity: visible ? 1 : 0,
+                  transform: visible ? "scale(1) translateY(0)" : "scale(0.8) translateY(40px)",
+                  transitionDelay: `${i * 150}ms`,
+                }}
+              >
                 <div className="w-12 h-12 rounded-lg bg-accent flex items-center justify-center mb-5 group-hover:bg-primary/10 transition-colors">
                   <s.icon size={24} className="text-primary" />
                 </div>
