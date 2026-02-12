@@ -7,7 +7,7 @@ interface PageHeroProps {
 }
 
 const PageHero = ({ title, subtitle, highlight }: PageHeroProps) => (
-  <section className="relative py-20 md:py-28 px-4 md:px-8 flex items-center justify-center text-center overflow-hidden">
+  <section className="relative py-20 md:py-28 px-4 md:px-8 mb-10 md:mb-16 flex items-center justify-center text-center overflow-hidden">
     <div
       className="absolute inset-0 bg-cover bg-center"
       style={{ backgroundImage: `url(${pageHeroBg})` }}
