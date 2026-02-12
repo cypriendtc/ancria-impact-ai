@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Search, Lightbulb, Rocket, GraduationCap, RefreshCw } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
+import PageHero from "@/components/PageHero";
 
 const stepIcons = [Search, Lightbulb, Rocket, GraduationCap, RefreshCw];
 const stepNumbers = ["01", "02", "03", "04", "05"];
@@ -11,14 +12,11 @@ const Methodology = () => {
 
   return (
     <>
-      <section className="section-padding">
-        <div className="container mx-auto text-center max-w-3xl">
-          <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-            {t.methodology.title[lang]} <span className="text-gradient">{t.methodology.titleHighlight[lang]}</span>
-          </h1>
-          <p className="text-lg text-muted-foreground">{t.methodology.subtitle[lang]}</p>
-        </div>
-      </section>
+      <PageHero
+        title={t.methodology.title[lang]}
+        highlight={t.methodology.titleHighlight[lang]}
+        subtitle={t.methodology.subtitle[lang]}
+      />
 
       <section className="section-padding pt-0">
         <div className="container mx-auto max-w-4xl">

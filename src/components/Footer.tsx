@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
+import logo from "@/assets/logo.png";
 
 const Footer = () => {
   const { lang, t } = useLanguage();
@@ -18,7 +19,7 @@ const Footer = () => {
       <div className="container mx-auto py-12 md:py-16 px-4 md:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
-            <h3 className="text-xl font-heading font-bold text-gradient mb-4">ANCRIATECH</h3>
+            <img src={logo} alt="ANCRIATECH" className="h-8 mb-4 brightness-0 invert" />
             <p className="text-sm text-[hsl(var(--hero-fg)/0.7)] leading-relaxed">
               {t.footer.desc[lang]}
             </p>

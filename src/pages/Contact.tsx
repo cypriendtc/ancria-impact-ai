@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin, MessageCircle, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/i18n/LanguageContext";
+import PageHero from "@/components/PageHero";
 
 const Contact = () => {
   const { lang, t } = useLanguage();
@@ -30,14 +31,11 @@ const Contact = () => {
 
   return (
     <>
-      <section className="section-padding">
-        <div className="container mx-auto text-center max-w-3xl">
-          <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-            <span className="text-gradient">{t.contact.title[lang]}</span>{t.contact.titleSuffix[lang]}
-          </h1>
-          <p className="text-lg text-muted-foreground">{t.contact.subtitle[lang]}</p>
-        </div>
-      </section>
+      <PageHero
+        title={t.contact.title[lang]}
+        highlight={t.contact.titleSuffix[lang]}
+        subtitle={t.contact.subtitle[lang]}
+      />
 
       <section className="section-padding pt-0">
         <div className="container mx-auto">

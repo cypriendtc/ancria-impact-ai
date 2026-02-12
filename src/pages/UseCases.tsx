@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, FileText, BarChart3, Megaphone, BookOpen, HeadphonesIcon } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
+import PageHero from "@/components/PageHero";
 
 const ucIcons = [FileText, BarChart3, Megaphone, BookOpen, HeadphonesIcon];
 
@@ -10,14 +11,11 @@ const UseCases = () => {
 
   return (
     <>
-      <section className="section-padding">
-        <div className="container mx-auto text-center max-w-3xl">
-          <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-            {t.useCases.title[lang]}<span className="text-gradient">{t.useCases.titleHighlight[lang]}</span>
-          </h1>
-          <p className="text-lg text-muted-foreground">{t.useCases.subtitle[lang]}</p>
-        </div>
-      </section>
+      <PageHero
+        title={t.useCases.title[lang]}
+        highlight={t.useCases.titleHighlight[lang]}
+        subtitle={t.useCases.subtitle[lang]}
+      />
 
       <section className="section-padding pt-0">
         <div className="container mx-auto space-y-6">
