@@ -1,5 +1,6 @@
 import { Target, Eye, Heart, Globe, Award } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
+import PageHero from "@/components/PageHero";
 
 const About = () => {
   const { lang, t } = useLanguage();
@@ -7,14 +8,11 @@ const About = () => {
 
   return (
     <>
-      <section className="section-padding">
-        <div className="container mx-auto text-center max-w-3xl">
-          <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-            {t.about.title[lang]}<span className="text-gradient">ANCRIATECH</span>
-          </h1>
-          <p className="text-lg text-muted-foreground leading-relaxed">{t.about.desc[lang]}</p>
-        </div>
-      </section>
+      <PageHero
+        title={t.about.title[lang]}
+        highlight="ANCRIATECH"
+        subtitle={t.about.desc[lang]}
+      />
 
       <section className="section-padding bg-muted/50 pt-0">
         <div className="container mx-auto grid md:grid-cols-2 gap-8 -mt-4">

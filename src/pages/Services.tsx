@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Brain, Cpu, GraduationCap, ArrowRight, Search, LineChart, Workflow, Bot, Users, BookOpen } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
+import PageHero from "@/components/PageHero";
 
 const catIcons = [Brain, Cpu, GraduationCap];
 const itemIcons = [[Search, LineChart], [Workflow, Bot], [Users, BookOpen]];
@@ -11,14 +12,11 @@ const Services = () => {
 
   return (
     <>
-      <section className="section-padding">
-        <div className="container mx-auto text-center max-w-3xl">
-          <h1 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-            {t.services.title[lang]} <span className="text-gradient">{t.services.titleHighlight[lang]}</span>
-          </h1>
-          <p className="text-lg text-muted-foreground">{t.services.subtitle[lang]}</p>
-        </div>
-      </section>
+      <PageHero
+        title={t.services.title[lang]}
+        highlight={t.services.titleHighlight[lang]}
+        subtitle={t.services.subtitle[lang]}
+      />
 
       {t.services.categories.map((cat, ci) => {
         const CatIcon = catIcons[ci];
