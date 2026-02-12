@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from "react";
-import { MessageCircle, X, Send } from "lucide-react";
+import { X, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/i18n/LanguageContext";
+import chatbotIcon from "@/assets/chatbot-icon.png";
 
 type Message = { role: "user" | "bot"; text: string };
 
@@ -82,10 +83,10 @@ const ChatBot = () => {
       {/* Floating button */}
       <button
         onClick={() => setOpen(!open)}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-primary text-primary-foreground shadow-lg hover:shadow-xl flex items-center justify-center transition-all hover:scale-105"
+        className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full shadow-lg hover:shadow-xl flex items-center justify-center transition-all hover:scale-105 animate-bounce-subtle"
         aria-label="Chat"
       >
-        {open ? <X size={24} /> : <MessageCircle size={24} />}
+        {open ? <X size={24} className="text-primary" /> : <img src={chatbotIcon} alt="Chat" className="w-14 h-14 rounded-full" />}
       </button>
 
       {/* Chat window */}
@@ -93,8 +94,8 @@ const ChatBot = () => {
         <div className="fixed bottom-24 right-6 z-50 w-[360px] max-w-[calc(100vw-2rem)] bg-card border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-fade-up" style={{ height: "480px" }}>
           {/* Header */}
           <div className="bg-primary text-primary-foreground px-5 py-4 flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-primary-foreground/20 flex items-center justify-center">
-              <MessageCircle size={16} />
+            <div className="w-8 h-8 rounded-full overflow-hidden">
+              <img src={chatbotIcon} alt="Bot" className="w-full h-full object-cover" />
             </div>
             <div>
               <div className="font-heading font-semibold text-sm">{t.chatbot.title[lang]}</div>
