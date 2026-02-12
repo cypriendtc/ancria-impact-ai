@@ -85,3 +85,16 @@
     @apply bg-[hsl(var(--hero-bg))] text-[hsl(var(--hero-fg))];
   }
 }
+
+@keyframes bounce-subtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 2s ease-in-out infinite;
+}
+
+.animate-bounce-subtle:hover {
+  animation: none;
+}
