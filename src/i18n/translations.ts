@@ -16,8 +16,8 @@ export const translations = {
     titleHighlight: { fr: "performance", en: "performance" },
     titleEnd: { fr: "des entreprises africaines", en: "for African businesses" },
     desc: {
-      fr: "ANCRIATECH accompagne les PME, institutions et startups dans l'adoption de l'intelligence artificielle pour transformer leurs processus et accélérer leur croissance.",
-      en: "ANCRIATECH supports SMEs, institutions and startups in adopting artificial intelligence to transform their processes and accelerate growth.",
+      fr: "ANCRIA accompagne les PME, institutions et startups dans l'adoption de l'intelligence artificielle pour transformer leurs processus et accélérer leur croissance.",
+      en: "ANCRIA supports SMEs, institutions and startups in adopting artificial intelligence to transform their processes and accelerate growth.",
     },
     cta1: { fr: "Prendre rendez-vous", en: "Book a meeting" },
     cta2: { fr: "Découvrir nos services", en: "Discover our services" },
@@ -80,7 +80,7 @@ export const translations = {
     ],
     positionTitle: { fr: "Un positionnement", en: "A" },
     positionHighlight: { fr: "unique", en: "unique positioning" },
-    positionP1: { fr: "ANCRIATECH se distingue par sa connaissance approfondie des réalités économiques africaines combinée à une expertise de pointe en intelligence artificielle. Nous ne vendons pas de la technologie pour la technologie : nous apportons des solutions concrètes qui répondent à de vrais enjeux business.", en: "ANCRIATECH stands out through its deep understanding of African economic realities combined with cutting-edge AI expertise. We don't sell technology for technology's sake: we deliver concrete solutions addressing real business challenges." },
+    positionP1: { fr: "ANCRIA se distingue par sa connaissance approfondie des réalités économiques africaines combinée à une expertise de pointe en intelligence artificielle. Nous ne vendons pas de la technologie pour la technologie : nous apportons des solutions concrètes qui répondent à de vrais enjeux business.", en: "ANCRIA stands out through its deep understanding of African economic realities combined with cutting-edge AI expertise. We don't sell technology for technology's sake: we deliver concrete solutions addressing real business challenges." },
     positionP2: { fr: "Notre approche pédagogique permet à vos équipes de s'approprier les outils IA, garantissant une adoption durable et un retour sur investissement optimal.", en: "Our educational approach empowers your teams to adopt AI tools, ensuring lasting adoption and optimal return on investment." },
   },
   services: {
@@ -166,7 +166,7 @@ export const translations = {
     ],
     requestQuote: { fr: "Demander un devis", en: "Request a quote" },
     problemLabel: { fr: "Problème", en: "Problem" },
-    solutionLabel: { fr: "Solution ANCRIATECH", en: "ANCRIATECH Solution" },
+    solutionLabel: { fr: "Solution ANCRIA", en: "ANCRIA Solution" },
     benefitsLabel: { fr: "Bénéfices", en: "Benefits" },
   },
   useCases: {
@@ -225,7 +225,7 @@ export const translations = {
     toastFill: { fr: "Veuillez remplir tous les champs obligatoires.", en: "Please fill in all required fields." },
     toastSuccess: { fr: "Message envoyé !", en: "Message sent!" },
     toastSuccessDesc: { fr: "Nous vous répondrons dans les plus brefs délais.", en: "We'll get back to you as soon as possible." },
-    whatsappMsg: { fr: "Bonjour ANCRIATECH, je souhaite en savoir plus sur vos services.", en: "Hello ANCRIATECH, I would like to learn more about your services." },
+    whatsappMsg: { fr: "Bonjour ANCRIA, je souhaite en savoir plus sur vos services.", en: "Hello ANCRIA, I would like to learn more about your services." },
   },
   footer: {
     desc: { fr: "L'intelligence artificielle au service de la performance des entreprises africaines.", en: "Artificial intelligence driving performance for African businesses." },
@@ -241,7 +241,7 @@ export const translations = {
     rights: { fr: "Tous droits réservés.", en: "All rights reserved." },
   },
   chatbot: {
-    title: { fr: "Assistant ANCRIATECH", en: "ANCRIATECH Assistant" },
+    title: { fr: "Assistant ANCRIA", en: "ANCRIA Assistant" },
     placeholder: { fr: "Tapez votre message...", en: "Type your message..." },
     greeting: { fr: "Bonjour ! 👋 Comment puis-je vous aider ? Posez-moi vos questions sur nos services IA.", en: "Hello! 👋 How can I help you? Ask me about our AI services." },
   },

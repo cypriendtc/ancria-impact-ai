@@ -23,7 +23,7 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-card/80 backdrop-blur-xl border-b border-border">
       <div className="container mx-auto flex items-center justify-between h-16 md:h-20">
         <Link to="/" className="flex items-center">
-          <img src={logo} alt="ANCRIATECH" className="h-8 md:h-10" />
+          <img src={logo} alt="ANCRIA" className="h-8 md:h-10" />
         </Link>
 
         <div className="hidden lg:flex items-center gap-8">
