@@ -10,7 +10,7 @@ const About = () => {
     <>
       <PageHero
         title={t.about.title[lang]}
-        highlight="ANCRIATECH"
+        highlight="ANCRIA"
         subtitle={t.about.desc[lang]}
       />
 

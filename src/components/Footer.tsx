@@ -19,7 +19,7 @@ const Footer = () => {
       <div className="container mx-auto py-12 md:py-16 px-4 md:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
-            <img src={logo} alt="ANCRIATECH" className="h-8 mb-4 brightness-0 invert" />
+            <img src={logo} alt="ANCRIA" className="h-8 mb-4 brightness-0 invert" />
             <p className="text-sm text-[hsl(var(--hero-fg)/0.7)] leading-relaxed">
               {t.footer.desc[lang]}
             </p>
@@ -48,7 +48,7 @@ const Footer = () => {
             <h4 className="font-heading font-semibold text-[hsl(var(--hero-fg))] mb-4">{t.footer.contactTitle[lang]}</h4>
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-sm text-[hsl(var(--hero-fg)/0.6)]">
-                <Mail size={16} className="text-primary" /> contact@ancriatech.com
+                <Mail size={16} className="text-primary" /> contact@ancria.com
               </li>
               <li className="flex items-center gap-2 text-sm text-[hsl(var(--hero-fg)/0.6)]">
                 <Phone size={16} className="text-primary" /> +237 6 98 36 44 32
@@ -60,7 +60,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="mt-12 pt-8 border-t border-[hsl(var(--hero-fg)/0.1)] text-center text-sm text-[hsl(var(--hero-fg)/0.5)]">
-          © {new Date().getFullYear()} ANCRIATECH. {t.footer.rights[lang]}
+          © {new Date().getFullYear()} ANCRIA. {t.footer.rights[lang]}
         </div>
       </div>
     </footer>

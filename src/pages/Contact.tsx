@@ -73,7 +73,7 @@ const Contact = () => {
                 <h3 className="font-heading font-semibold mb-5">{t.contact.coordinates[lang]}</h3>
                 <div className="space-y-4">
                   {[
-                    { icon: Mail, label: t.contact.emailLabel[lang], value: "contact@ancriatech.com" },
+                    { icon: Mail, label: t.contact.emailLabel[lang], value: "contact@ancria.com" },
                     { icon: Phone, label: t.contact.phoneLabel[lang], value: "+237 6 98 36 44 32" },
                     { icon: MapPin, label: t.contact.addressLabel[lang], value: "Douala, Cameroun" },
                   ].map((c) => (
