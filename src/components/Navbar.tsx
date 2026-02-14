@@ -16,6 +16,7 @@ const Navbar = () => {
     { label: t.nav.services[lang], path: "/services" },
     { label: t.nav.useCases[lang], path: "/cas-usage" },
     { label: t.nav.methodology[lang], path: "/methodologie" },
+    { label: t.nav.greenIntelligence[lang], path: "/green-intelligence" },
     { label: t.nav.contact[lang], path: "/contact" },
   ];
 
