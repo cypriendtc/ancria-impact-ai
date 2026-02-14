@@ -6,12 +6,15 @@ import { Mail, Phone, MapPin, MessageCircle, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/i18n/LanguageContext";
 import PageHero from "@/components/PageHero";
+import { useAnimationOnScroll } from "@/hooks/useAnimationOnScroll";
 
 const Contact = () => {
   const { lang, t } = useLanguage();
   const { toast } = useToast();
   const [form, setForm] = useState({ name: "", email: "", company: "", message: "" });
   const [sending, setSending] = useState(false);
+
+  const { ref: contactRef, visible: contactVisible } = useAnimationOnScroll({ threshold: 0.2 });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,10 +40,16 @@ const Contact = () => {
         subtitle={t.contact.subtitle[lang]}
       />
 
-      <section className="section-padding pt-0">
+      <section ref={contactRef} className="section-padding pt-0 -mt-16">
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-5 gap-10">
-            <div className="lg:col-span-3">
+            <div
+              className="lg:col-span-3 transition-all duration-700 ease-out"
+              style={{
+                opacity: contactVisible ? 1 : 0,
+                transform: contactVisible ? "translateY(0)" : "translateY(40px)",
+              }}
+            >
               <form onSubmit={handleSubmit} className="card-elevated p-8 space-y-5">
                 <h2 className="text-xl font-heading font-semibold mb-2">{t.contact.formTitle[lang]}</h2>
                 <div className="grid sm:grid-cols-2 gap-4">
@@ -68,7 +77,14 @@ const Contact = () => {
               </form>
             </div>
 
-            <div className="lg:col-span-2 space-y-6">
+            <div
+              className="lg:col-span-2 space-y-6 transition-all duration-700 ease-out"
+              style={{
+                opacity: contactVisible ? 1 : 0,
+                transform: contactVisible ? "translateY(0)" : "translateY(40px)",
+                transitionDelay: "150ms",
+              }}
+            >
               <div className="card-elevated p-8">
                 <h3 className="font-heading font-semibold mb-5">{t.contact.coordinates[lang]}</h3>
                 <div className="space-y-4">

@@ -1,54 +1,84 @@
 import { useState, useRef, useEffect } from "react";
-import { X, Send } from "lucide-react";
+import { X, Send, Bot } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/i18n/LanguageContext";
-import chatbotIcon from "@/assets/chatbot-icon.png";
+import { translations } from "@/i18n/translations";
 
 type Message = { role: "user" | "bot"; text: string };
 
-const faqFr: Record<string, string> = {
-  service: "Nous proposons 3 expertises : Conseil en IA, Automatisation & Agents IA, et Formation & Accompagnement. Visitez notre page Services pour en savoir plus !",
-  prix: "Nos tarifs sont sur mesure selon votre projet. Contactez-nous pour un devis gratuit !",
-  devis: "Vous pouvez demander un devis gratuit via notre page Contact ou sur WhatsApp au +237 6 98 36 44 32.",
-  contact: "Vous pouvez nous joindre par email à contact@ancria.com, par téléphone au +237 6 98 36 44 32, ou via WhatsApp.",
-  formation: "Nous proposons des formations IA sur mesure pour vos équipes et des coachings pour les dirigeants. Contactez-nous pour un programme personnalisé !",
-  automatisation: "Nous automatisons vos processus avec n8n, Make et des agents IA métiers pour gagner en productivité.",
-  ia: "L'IA peut transformer votre entreprise : automatisation, analyse de données, chatbots, marketing personnalisé et bien plus. Parlons de votre projet !",
-  cameroun: "Nous sommes basés à Douala, Cameroun, et accompagnons les entreprises de toute l'Afrique.",
-  afrique: "Nous intervenons dans toute l'Afrique avec une expertise adaptée aux réalités économiques du continent.",
-  whatsapp: "Écrivez-nous sur WhatsApp au +237 6 98 36 44 32 !",
-  rdv: "Rendez-vous sur notre page Contact pour planifier un appel découverte gratuit.",
-  bonjour: "Bonjour ! 😊 Comment puis-je vous aider aujourd'hui ?",
-  merci: "Avec plaisir ! N'hésitez pas si vous avez d'autres questions.",
-};
-
-const faqEn: Record<string, string> = {
-  service: "We offer 3 areas of expertise: AI Consulting, Automation & AI Agents, and Training & Support. Visit our Services page to learn more!",
-  price: "Our pricing is customized for each project. Contact us for a free quote!",
-  quote: "You can request a free quote on our Contact page or via WhatsApp at +237 6 98 36 44 32.",
-  contact: "Reach us by email at contact@ancria.com, by phone at +237 6 98 36 44 32, or via WhatsApp.",
-  training: "We offer tailored AI training for your teams and executive coaching. Contact us for a personalized program!",
-  automation: "We automate your processes with n8n, Make and business AI agents to boost productivity.",
-  ai: "AI can transform your business: automation, data analysis, chatbots, personalized marketing and much more. Let's talk about your project!",
-  cameroon: "We are based in Douala, Cameroon, and support businesses across Africa.",
-  africa: "We work across Africa with expertise adapted to the continent's economic realities.",
-  whatsapp: "Message us on WhatsApp at +237 6 98 36 44 32!",
-  appointment: "Visit our Contact page to schedule a free discovery call.",
-  hello: "Hello! 😊 How can I help you today?",
-  thanks: "You're welcome! Feel free to ask if you have more questions.",
-};
-
-const getResponse = (input: string, lang: string): string => {
+const getResponse = (input: string, lang: string, lastBotMessage?: string): string => {
   const lower = input.toLowerCase();
-  const faq = lang === "fr" ? faqFr : faqEn;
-  const defaultMsg = lang === "fr"
-    ? "Merci pour votre message ! Pour une réponse personnalisée, contactez-nous via WhatsApp au +237 6 98 36 44 32 ou sur notre page Contact."
-    : "Thanks for your message! For a personalized response, reach out via WhatsApp at +237 6 98 36 44 32 or our Contact page.";
+  const l = lang as "fr" | "en";
+  const t = translations;
 
-  for (const [key, value] of Object.entries(faq)) {
-    if (lower.includes(key)) return value;
+  // Helper for contact CTA
+  const contactCTA = l === "fr" 
+    ? "C'est le moment idéal pour en discuter ! Vous pouvez réserver un appel découverte gratuit sur la page Contact ou nous écrire sur WhatsApp."
+    : "It's the perfect time to discuss it! You can book a free discovery call on the Contact page or message us on WhatsApp.";
+
+  // Check for agreement/interest based on previous context
+  if (lastBotMessage && (lower.match(/^(oui|yes|ouais|yep|ok|d'accord|bien s(û|u)r|sure|interested|intéressé|absolument|effectivement|exactement)/))) {
+     if (lastBotMessage.includes("?") || lastBotMessage.includes("intéresse")) {
+        return l === "fr" 
+          ? `Excellent ! ${contactCTA}`
+          : `Great! ${contactCTA}`;
+     }
   }
-  return defaultMsg;
+
+  // Greetings
+  if (lower.match(/^(bonjour|salut|hello|hi|hey|coucou)/)) {
+    return t.chatbot.greeting[l];
+  }
+
+  // Services (General)
+  if (lower.includes("service") || lower.includes("offr") || lower.includes("propos") || lower.includes("offer") || lower.includes("solution")) {
+    const categories = t.services.categories.map(c => `• ${c.category[l]}`).join("\n");
+    const question = l === "fr" ? "Lequel de ces domaines vous intéresse le plus ?" : "Which of these areas interests you the most?";
+    return `${t.services.subtitle[l]}\n\n${categories}\n\n${question}`;
+  }
+
+  // Specific Service Categories
+  if (lower.includes("conseil") || lower.includes("consulting") || lower.includes("audit") || lower.includes("stratégie") || lower.includes("strategy")) {
+     const cat = t.services.categories[0];
+     const question = l === "fr" ? "Souhaitez-vous être accompagné pour définir votre stratégie IA ?" : "Would you like support in defining your AI strategy?";
+     return `${cat.category[l]} :\n${cat.items.map(i => `- ${i.title[l]}`).join("\n")}\n\n${question}`;
+  }
+  if (lower.includes("automatisation") || lower.includes("automation") || lower.includes("agent") || lower.includes("workflow") || lower.includes("chatbot") || lower.includes("bot")) {
+     const cat = t.services.categories[1];
+     const question = l === "fr" ? "Avez-vous un projet d'automatisation ou de chatbot en tête ?" : "Do you have an automation or chatbot project in mind?";
+     return `${cat.category[l]} :\n${cat.items.map(i => `- ${i.title[l]}`).join("\n")}\n\n${question}`;
+  }
+  if (lower.includes("formation") || lower.includes("training") || lower.includes("coach") || lower.includes("accompagnement") || lower.includes("support")) {
+     const cat = t.services.categories[2];
+     const question = l === "fr" ? "Voulez-vous former vos équipes à l'IA ?" : "Do you want to train your teams on AI?";
+     return `${cat.category[l]} :\n${cat.items.map(i => `- ${i.title[l]}`).join("\n")}\n\n${question}`;
+  }
+
+  // About / Mission
+  if (lower.includes("ancria") || lower.includes("qui") || lower.includes("who") || lower.includes("mission") || lower.includes("vision") || lower.includes("valeur") || lower.includes("value") || lower.includes("about") || lower.includes("propos")) {
+    return `${t.about.desc[l]}\n\n${t.about.mission[l]}: ${t.about.missionDesc[l]}`;
+  }
+
+  // Methodology
+  if (lower.includes("method") || lower.includes("comment") || lower.includes("how") || lower.includes("process") || lower.includes("étape") || lower.includes("step")) {
+    return `${t.methodology.subtitle[l]}\n\n${t.methodology.steps.map((s, i) => `${i+1}. ${s.title[l]}`).join("\n")}`;
+  }
+
+  // Use Cases
+  if (lower.includes("cas") || lower.includes("use") || lower.includes("exemp") || lower.includes("concret")) {
+     const question = l === "fr" ? "Un de ces cas d'usage correspond-il à votre besoin ?" : "Does one of these use cases match your needs?";
+     return `${t.useCases.subtitle[l]}\n\n${t.useCases.items.slice(0, 3).map(u => `• ${u.title[l]}`).join("\n")}\n\n${question}`;
+  }
+
+  // Contact / Pricing
+  if (lower.includes("contact") || lower.includes("mail") || lower.includes("email") || lower.includes("phone") || lower.includes("tel") || lower.includes("téléphone") || lower.includes("adresse") || lower.includes("address") || lower.includes("rdv") || lower.includes("rendez-vous") || lower.includes("appointment") || lower.includes("prix") || lower.includes("tarif") || lower.includes("price") || lower.includes("cost") || lower.includes("devis") || lower.includes("quote")) {
+     return `${t.contact.subtitle[l]}\n\nEmail: contact@ancria.com\nTel: +237 6 98 36 44 32\n${l === 'fr' ? "Vous pouvez demander un devis ou prendre rendez-vous sur la page Contact." : "You can request a quote or book an appointment on the Contact page."}`;
+  }
+
+  // Default
+  return l === "fr"
+    ? "Je ne suis pas sûr de comprendre. Vous pouvez me poser des questions sur nos services, notre méthodologie, nos cas d'usage ou nous contacter."
+    : "I'm not sure I understand. You can ask me about our services, methodology, use cases, or how to contact us.";
 };
 
 const ChatBot = () => {
@@ -71,10 +101,14 @@ const ChatBot = () => {
   const send = () => {
     if (!input.trim()) return;
     const userMsg: Message = { role: "user", text: input.trim() };
+    
+    // Get last bot message for context
+    const lastBotMsg = [...messages].reverse().find(m => m.role === "bot")?.text;
+
     setMessages((prev) => [...prev, userMsg]);
     setInput("");
     setTimeout(() => {
-      setMessages((prev) => [...prev, { role: "bot", text: getResponse(userMsg.text, lang) }]);
+      setMessages((prev) => [...prev, { role: "bot", text: getResponse(userMsg.text, lang, lastBotMsg) }]);
     }, 600);
   };
 
@@ -83,10 +117,10 @@ const ChatBot = () => {
       {/* Floating button */}
       <button
         onClick={() => setOpen(!open)}
-        className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full shadow-lg hover:shadow-xl flex items-center justify-center transition-all hover:scale-105 animate-bounce-subtle"
+        className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-primary text-primary-foreground shadow-lg hover:shadow-xl flex items-center justify-center transition-all hover:scale-105 animate-bounce-subtle"
         aria-label="Chat"
       >
-        {open ? <X size={24} className="text-primary" /> : <img src={chatbotIcon} alt="Chat" className="w-14 h-14 rounded-full" />}
+        {open ? <X size={32} /> : <Bot size={32} />}
       </button>
 
       {/* Chat window */}
@@ -94,8 +128,8 @@ const ChatBot = () => {
         <div className="fixed bottom-24 right-6 z-50 w-[360px] max-w-[calc(100vw-2rem)] bg-card border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-fade-up" style={{ height: "480px" }}>
           {/* Header */}
           <div className="bg-primary text-primary-foreground px-5 py-4 flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full overflow-hidden">
-              <img src={chatbotIcon} alt="Bot" className="w-full h-full object-cover" />
+            <div className="w-8 h-8 rounded-full bg-primary-foreground text-primary flex items-center justify-center">
+              <Bot size={20} />
             </div>
             <div>
               <div className="font-heading font-semibold text-sm">{t.chatbot.title[lang]}</div>

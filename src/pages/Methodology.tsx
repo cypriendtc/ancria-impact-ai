@@ -3,12 +3,15 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Search, Lightbulb, Rocket, GraduationCap, RefreshCw } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import PageHero from "@/components/PageHero";
+import { useAnimationOnScroll } from "@/hooks/useAnimationOnScroll";
 
 const stepIcons = [Search, Lightbulb, Rocket, GraduationCap, RefreshCw];
 const stepNumbers = ["01", "02", "03", "04", "05"];
 
 const Methodology = () => {
   const { lang, t } = useLanguage();
+  const { ref: stepsRef, visible: stepsVisible } = useAnimationOnScroll({ threshold: 0.1 });
+  const { ref: ctaRef, visible: ctaVisible } = useAnimationOnScroll({ threshold: 0.2 });
 
   return (
     <>
@@ -18,7 +21,7 @@ const Methodology = () => {
         subtitle={t.methodology.subtitle[lang]}
       />
 
-      <section className="section-padding pt-0">
+      <section ref={stepsRef} className="section-padding pt-0 -mt-16">
         <div className="container mx-auto max-w-4xl">
           <div className="relative">
             <div className="absolute left-6 md:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-secondary to-primary/20 hidden md:block" />
@@ -26,7 +29,15 @@ const Methodology = () => {
               {t.methodology.steps.map((step, i) => {
                 const Icon = stepIcons[i];
                 return (
-                  <div key={i} className="relative flex gap-6 md:gap-10 animate-fade-up" style={{ animationDelay: `${i * 0.1}s` }}>
+                  <div
+                    key={i}
+                    className="relative flex gap-6 md:gap-10 transition-all duration-700 ease-out"
+                    style={{
+                      opacity: stepsVisible ? 1 : 0,
+                      transform: stepsVisible ? "translateY(0)" : "translateY(40px)",
+                      transitionDelay: `${i * 150}ms`,
+                    }}
+                  >
                     <div className="relative z-10 w-12 h-12 md:w-16 md:h-16 rounded-full bg-primary/10 border-2 border-primary flex items-center justify-center shrink-0">
                       <span className="text-primary font-heading font-bold text-sm md:text-base">{stepNumbers[i]}</span>
                     </div>
@@ -52,9 +63,15 @@ const Methodology = () => {
         </div>
       </section>
 
-      <section className="section-padding pt-0">
+      <section ref={ctaRef} className="section-padding pt-0">
         <div className="container mx-auto text-center">
-          <div className="hero-dark rounded-2xl p-10 md:p-14">
+          <div
+            className="hero-dark rounded-2xl p-10 md:p-14 transition-all duration-700 ease-out"
+            style={{
+              opacity: ctaVisible ? 1 : 0,
+              transform: ctaVisible ? "scale(1)" : "scale(0.95)",
+            }}
+          >
             <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4 text-[hsl(var(--hero-fg))]">
               {t.methodology.ctaTitle[lang]}
             </h2>

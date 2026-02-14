@@ -31,8 +31,10 @@ const Navbar = () => {
             <Link
               key={item.path}
               to={item.path}
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                location.pathname === item.path ? "text-primary" : "text-muted-foreground"
+              className={`text-sm font-medium transition-all duration-300 hover:text-primary border-b-2 ${
+                location.pathname === item.path
+                  ? "border-primary text-primary"
+                  : "border-transparent text-muted-foreground"
               }`}
             >
               {item.label}

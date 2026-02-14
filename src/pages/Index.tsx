@@ -2,8 +2,9 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Brain, Cpu, GraduationCap, ArrowRight, Zap, Users, TrendingUp, Shield, CheckCircle, Lightbulb, Settings, BarChart3, MessageSquare } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { useAnimationOnScroll } from "@/hooks/useAnimationOnScroll";
 
 const useCountUp = (end: number, duration = 2000, start = false) => {
   const [count, setCount] = useState(0);
@@ -40,28 +41,10 @@ const statSuffixes = ["+", "+", "%", "x"];
 
 const Index = () => {
   const { lang, t } = useLanguage();
-  const expertisesRef = useRef<HTMLDivElement>(null);
-  const statsRef = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  const [statsVisible, setStatsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
-      { threshold: 0.15 }
-    );
-    if (expertisesRef.current) observer.observe(expertisesRef.current);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setStatsVisible(true); observer.disconnect(); } },
-      { threshold: 0.3 }
-    );
-    if (statsRef.current) observer.observe(statsRef.current);
-    return () => observer.disconnect();
-  }, []);
+  const { ref: expertisesRef, visible: expertisesVisible } = useAnimationOnScroll({ threshold: 0.15 });
+  const { ref: statsRef, visible: statsVisible } = useAnimationOnScroll({ threshold: 0.3 });
+  const { ref: whyUsRef, visible: whyUsVisible } = useAnimationOnScroll({ threshold: 0.15 });
+  const { ref: ctaRef, visible: ctaVisible } = useAnimationOnScroll({ threshold: 0.15 });
 
   return (
     <>
@@ -103,15 +86,21 @@ const Index = () => {
       </section>
 
       {/* Expertises */}
-      <section className="section-padding">
+      <section ref={expertisesRef} className="section-padding pt-0 -mt-16">
         <div className="container mx-auto">
-          <div className="text-center mb-16">
+          <div
+            className="text-center mb-16 transition-all duration-700 ease-out"
+            style={{
+              opacity: expertisesVisible ? 1 : 0,
+              transform: expertisesVisible ? "translateY(0)" : "translateY(40px)",
+            }}
+          >
             <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
               {t.expertises.title[lang]} <span className="text-gradient">{t.expertises.titleHighlight[lang]}</span>
             </h2>
             <p className="text-muted-foreground max-w-xl mx-auto">{t.expertises.subtitle[lang]}</p>
           </div>
-          <div ref={expertisesRef} className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-6">
             {t.expertises.items.map((s, i) => {
               const Icon = icons[i];
               return (
@@ -119,9 +108,9 @@ const Index = () => {
                   key={i}
                   className="card-elevated p-8 group transition-all duration-700 ease-out"
                   style={{
-                    opacity: visible ? 1 : 0,
-                    transform: visible ? "scale(1) translateY(0)" : "scale(0.8) translateY(40px)",
-                    transitionDelay: `${i * 150}ms`,
+                    opacity: expertisesVisible ? 1 : 0,
+                    transform: expertisesVisible ? "scale(1) translateY(0)" : "scale(0.8) translateY(40px)",
+                    transitionDelay: `${150 + i * 150}ms`,
                   }}
                 >
                   <div className="w-12 h-12 rounded-lg bg-accent flex items-center justify-center mb-5 group-hover:bg-primary/10 transition-colors">
@@ -151,10 +140,16 @@ const Index = () => {
       </section>
 
       {/* Why Us */}
-      <section className="section-padding">
+      <section ref={whyUsRef} className="section-padding">
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
+            <div
+              className="transition-all duration-700 ease-out"
+              style={{
+                opacity: whyUsVisible ? 1 : 0,
+                transform: whyUsVisible ? "translateY(0)" : "translateY(40px)",
+              }}
+            >
               <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
                 {t.whyUs.title[lang]} <span className="text-gradient">ANCRIA</span> ?
               </h2>
@@ -171,7 +166,15 @@ const Index = () => {
               {t.whyUs.cards.map((item, i) => {
                 const Icon = whyIcons[i];
                 return (
-                  <div key={i} className="card-elevated p-6 text-center">
+                  <div
+                    key={i}
+                    className="card-elevated p-6 text-center transition-all duration-700 ease-out"
+                    style={{
+                      opacity: whyUsVisible ? 1 : 0,
+                      transform: whyUsVisible ? "translateY(0)" : "translateY(40px)",
+                      transitionDelay: `${150 + i * 150}ms`,
+                    }}
+                  >
                     <Icon size={28} className="text-primary mx-auto mb-3" />
                     <h4 className="font-heading font-semibold text-sm">{item.label[lang]}</h4>
                     <p className="text-xs text-muted-foreground mt-1">{item.desc[lang]}</p>
@@ -184,9 +187,15 @@ const Index = () => {
       </section>
 
       {/* CTA */}
-      <section className="section-padding">
+      <section ref={ctaRef} className="section-padding">
         <div className="container mx-auto">
-          <div className="hero-dark rounded-2xl p-10 md:p-16 text-center">
+          <div
+            className="hero-dark rounded-2xl p-10 md:p-16 text-center transition-all duration-700 ease-out"
+            style={{
+              opacity: ctaVisible ? 1 : 0,
+              transform: ctaVisible ? "scale(1)" : "scale(0.95)",
+            }}
+          >
             <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4 text-[hsl(var(--hero-fg))]">
               {t.cta.title[lang]}<span className="text-gradient">{t.cta.titleHighlight[lang]}</span> ?
             </h2>

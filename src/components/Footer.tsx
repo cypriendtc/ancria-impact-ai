@@ -48,7 +48,7 @@ const Footer = () => {
             <h4 className="font-heading font-semibold text-[hsl(var(--hero-fg))] mb-4">{t.footer.contactTitle[lang]}</h4>
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-sm text-[hsl(var(--hero-fg)/0.6)]">
-                <Mail size={16} className="text-primary" /> contact@ancria.com
+                <Mail size={16} className="text-primary" /> contact@ancria.tech
               </li>
               <li className="flex items-center gap-2 text-sm text-[hsl(var(--hero-fg)/0.6)]">
                 <Phone size={16} className="text-primary" /> +237 6 98 36 44 32
