@@ -10,6 +10,7 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import UseCases from "./pages/UseCases";
 import Methodology from "./pages/Methodology";
+import GreenIntelligence from "./pages/GreenIntelligence";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
@@ -29,6 +30,7 @@ const App = () => (
               <Route path="/services" element={<Services />} />
               <Route path="/cas-usage" element={<UseCases />} />
               <Route path="/methodologie" element={<Methodology />} />
+              <Route path="/green-intelligence" element={<GreenIntelligence />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
