@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Brain, Cpu, GraduationCap, ArrowRight, Search, LineChart, Workflow, Bot, Users, BookOpen } from "lucide-react";
+import { Brain, Cpu, GraduationCap, Leaf, ArrowRight, Search, LineChart, Workflow, Bot, Users, BookOpen, TreePine, Recycle, Banknote } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import PageHero from "@/components/PageHero";
 import { useAnimationOnScroll } from "@/hooks/useAnimationOnScroll";
 
-const catIcons = [Brain, Cpu, GraduationCap];
-const itemIcons = [[Search, LineChart], [Workflow, Bot], [Users, BookOpen]];
+const catIcons = [Brain, Cpu, GraduationCap, Leaf];
+const itemIcons = [[Search, LineChart], [Workflow, Bot], [Users, BookOpen], [TreePine, Recycle, Banknote]];
 
 const ServiceCategory = ({ cat, ci }: { cat: any, ci: number }) => {
   const { ref, visible } = useAnimationOnScroll({ threshold: 0.2 });
