@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, FileText, BarChart3, Megaphone, BookOpen, HeadphonesIcon } from "lucide-react";
+import { ArrowRight, FileText, BarChart3, Megaphone, BookOpen, HeadphonesIcon, Zap, Recycle, PieChart, Leaf } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import PageHero from "@/components/PageHero";
 import { useAnimationOnScroll } from "@/hooks/useAnimationOnScroll";
 
-const ucIcons = [FileText, BarChart3, Megaphone, BookOpen, HeadphonesIcon];
+const ucIcons = [FileText, BarChart3, Megaphone, BookOpen, HeadphonesIcon, Zap, Recycle, PieChart, Leaf];
 
 const UseCaseItem = ({ uc, i, delay }: { uc: any, i: number, delay: number }) => {
   const { ref, visible } = useAnimationOnScroll({ threshold: 0.2 });
