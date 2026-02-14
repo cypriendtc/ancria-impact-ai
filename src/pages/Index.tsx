@@ -86,7 +86,7 @@ const Index = () => {
       </section>
 
       {/* Expertises */}
-      <section ref={expertisesRef} className="section-padding pt-0 -mt-16">
+      <section ref={expertisesRef} className="section-padding pt-0 -mt-8 md:-mt-16">
         <div className="container mx-auto">
           <div
             className="text-center mb-16 transition-all duration-700 ease-out"

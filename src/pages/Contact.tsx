@@ -40,7 +40,7 @@ const Contact = () => {
         subtitle={t.contact.subtitle[lang]}
       />
 
-      <section ref={contactRef} className="section-padding pt-0 -mt-16">
+      <section ref={contactRef} className="section-padding pt-0 -mt-8 md:-mt-16">
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-5 gap-10">
             <div

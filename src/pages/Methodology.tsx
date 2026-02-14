@@ -21,7 +21,7 @@ const Methodology = () => {
         subtitle={t.methodology.subtitle[lang]}
       />
 
-      <section ref={stepsRef} className="section-padding pt-0 -mt-16">
+      <section ref={stepsRef} className="section-padding pt-0 -mt-8 md:-mt-16">
         <div className="container mx-auto max-w-4xl">
           <div className="relative">
             <div className="absolute left-6 md:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-secondary to-primary/20 hidden md:block" />

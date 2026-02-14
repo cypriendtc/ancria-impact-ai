@@ -19,7 +19,7 @@ const About = () => {
         subtitle={t.about.desc[lang]}
       />
 
-      <section ref={missionRef} className="section-padding bg-muted/50 pt-0 -mt-16">
+      <section ref={missionRef} className="section-padding bg-muted/50 pt-0 -mt-8 md:-mt-16">
         <div className="container mx-auto grid md:grid-cols-2 gap-8 -mt-4">
           <div
             className="card-elevated p-8 transition-all duration-700 ease-out"

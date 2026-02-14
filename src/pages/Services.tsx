@@ -14,7 +14,7 @@ const ServiceCategory = ({ cat, ci }: { cat: any, ci: number }) => {
   const CatIcon = catIcons[ci];
 
   return (
-    <section ref={ref} className={`section-padding ${ci === 0 ? "pt-0 -mt-16" : ""} ${ci % 2 === 1 ? "bg-muted/50" : ""}`}>
+    <section ref={ref} className={`section-padding ${ci === 0 ? "pt-0 -mt-8 md:-mt-16" : ""}`}>
       <div className="container mx-auto">
         <div
           className="flex items-center gap-3 mb-10 transition-all duration-700 ease-out"

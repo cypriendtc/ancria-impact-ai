@@ -59,7 +59,7 @@ const UseCases = () => {
         subtitle={t.useCases.subtitle[lang]}
       />
 
-      <section className="section-padding pt-0 -mt-16">
+      <section className="section-padding pt-0 -mt-8 md:-mt-16">
         <div className="container mx-auto space-y-6">
           {t.useCases.items.map((uc, i) => (
             <UseCaseItem key={i} uc={uc} i={i} delay={i * 150} />
