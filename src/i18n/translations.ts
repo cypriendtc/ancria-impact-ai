@@ -163,6 +163,44 @@ export const translations = {
           },
         ],
       },
+      {
+        category: { fr: "Green Intelligence", en: "Green Intelligence" },
+        items: [
+          {
+            title: { fr: "Audit IA & Performance Durable", en: "AI Audit & Sustainable Performance" },
+            problem: { fr: "Vous ne savez pas comment mesurer l'impact environnemental ou énergétique de votre entreprise.", en: "You don't know how to measure your company's environmental or energy impact." },
+            solution: { fr: "Nous analysons vos processus, vos consommations et vos flux opérationnels afin d'identifier les inefficacités énergétiques, les pertes de ressources et les opportunités d'optimisation durable par l'IA.", en: "We analyze your processes, consumption and operational flows to identify energy inefficiencies, resource losses and sustainable optimization opportunities through AI." },
+            benefits: [
+              { fr: "Cartographie des inefficacités", en: "Inefficiency mapping" },
+              { fr: "Identification des postes à fort impact environnemental", en: "Identification of high environmental impact areas" },
+              { fr: "Plan d'optimisation durable priorisé", en: "Prioritized sustainable optimization plan" },
+              { fr: "Indicateurs de performance environnementale simplifiés", en: "Simplified environmental performance indicators" },
+            ],
+          },
+          {
+            title: { fr: "Stratégie IA & Transition Durable", en: "AI Strategy & Sustainable Transition" },
+            problem: { fr: "Votre entreprise veut évoluer vers un modèle plus responsable mais manque de cadre structuré.", en: "Your company wants to move towards a more responsible model but lacks a structured framework." },
+            solution: { fr: "Nous concevons une stratégie IA alignée sur vos objectifs business, les exigences ESG et les opportunités de financements verts.", en: "We design an AI strategy aligned with your business objectives, ESG requirements and green funding opportunities." },
+            benefits: [
+              { fr: "Plan stratégique durable sur 12-24 mois", en: "12-24 month sustainable strategic plan" },
+              { fr: "KPIs environnementaux et économiques", en: "Environmental and economic KPIs" },
+              { fr: "Estimation des gains énergétiques", en: "Energy savings estimation" },
+              { fr: "Feuille de route progressive et réaliste", en: "Progressive and realistic roadmap" },
+            ],
+          },
+          {
+            title: { fr: "Agent IA Finance Durable", en: "Sustainable Finance AI Agent" },
+            problem: { fr: "Vous souhaitez accéder à des financements verts mais vos dossiers manquent de structuration et d'indicateurs d'impact.", en: "You want to access green funding but your applications lack structure and impact indicators." },
+            solution: { fr: "Déploiement d'un assistant IA spécialisé qui structure votre business plan durable, génère des indicateurs d'impact, simule des projections environnementales et prépare des dossiers pour bailleurs et institutions.", en: "Deployment of a specialized AI assistant that structures your sustainable business plan, generates impact indicators, simulates environmental projections and prepares files for donors and institutions." },
+            benefits: [
+              { fr: "Dossiers plus crédibles", en: "More credible applications" },
+              { fr: "Gain de temps considérable", en: "Significant time savings" },
+              { fr: "Alignement avec exigences finance durable", en: "Alignment with sustainable finance requirements" },
+              { fr: "Meilleure capacité de négociation", en: "Better negotiation capacity" },
+            ],
+          },
+        ],
+      },
     ],
     requestQuote: { fr: "Demander un devis", en: "Request a quote" },
     problemLabel: { fr: "Problème", en: "Problem" },
